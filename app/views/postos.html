@@ -1,0 +1,23 @@
+
+<form ng-submit="submitPosto()">
+  <label>Código</label><input type="text" ng-model="posto.cod_municipio" /> <br/>
+  <label>Nome</label><input type="text" ng-model="posto.nome" /> <br/>
+  <label>Endereco</label><input type="text" ng-model="posto.endereco" /> <br/>
+  <label>Bairro</label><input type="text" ng-model="posto.bairro" /> <br/>
+  <label>Cidade</label><input type="text" ng-model="posto.cidade" /> <br/>
+  <label>Telefone</label><input type="text" ng-model="posto.telefone" /> <br/>  
+  <input type="submit" value="Add Post" />
+</form>
+
+<form ng-submit="submitArquivo()">
+
+<label>Arquivo</label>
+<input type="file" id="file" name="file" />
+
+<input type="submit" value="Enviar Arquivo" />
+
+</form>
+
+<div id="fileContents">
+</div>
+
