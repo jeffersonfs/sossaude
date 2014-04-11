@@ -1,7 +1,7 @@
 'use strict';
 
 app.factory('Map', function ($firebase, $geofire, $log, FIREBASE_URL) {
-  /*  var ref = new Firebase(FIREBASE_URL + 'geolocation');
+    var ref = new Firebase(FIREBASE_URL + 'geolocation');
  
     var geos = $geofire(ref);
 
@@ -13,16 +13,21 @@ app.factory('Map', function ($firebase, $geofire, $log, FIREBASE_URL) {
             catch(function(err) { $log.error(err); });
 		    	
     	},
-        find: function(latitude, longitude) {
+        find: function(latitude, longitude, cb) {
             // Query for data
             return geos.$getPointsNearLoc([latitude,longitude],100)
-                  .then(function(array) {
-                    return array;
-            }); 
+            .then( 
+                function(array) { 
+                    //console.log("Teste");
+                    //for (var i = 0; i < array.length; i++)
+                    //    console.log("A found point = ", array[i]);
+                    cb(array);
+            });
+                  
         }
     }
 
-    return Map;*/
+    return Map;
 
 
 });

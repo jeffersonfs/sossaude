@@ -6,4 +6,19 @@
  >
  <marker coords="{latitude: -7.52759814262368,longitude: -46.062304973601}"></marker>
 
+ <markers
+ 	models="markers" 
+ 	coords="'self'"
+ 	click="'onClicked'">
+ </markers>
+
+<marker ng-repeat="m in markers" coords="m" click="onMarkerClicked(m)">
+
+            <window>
+                    <p>{{m.nome}}</p>
+                    <p class="muted">{{m.telefone}}</p>
+            </window>
+</marker>
+
+
 </google-map>

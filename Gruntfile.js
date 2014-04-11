@@ -321,7 +321,58 @@ module.exports = function (grunt) {
         configFile: 'karma.conf.js',
         singleRun: true
       }
+    },
+
+    s3: {
+      options: {
+        key: "AKIAJE5LOPU4WCYYRCTQ",
+        secret: "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",
+        access: "public-read",
+        bucket: "sossaude",
+        region: "sa-east-1"
+      },
+      deploy: {
+        upload: [
+          {
+            src: 'dist/*',
+            dest: '/',
+            options: {gzip: false}
+          },
+          {
+            src: 'dist/fonts/*',
+            dest: '/fonts/',
+            options: {gzip: false}
+          },
+          {
+            src: 'dist/images/*',
+            dest: '/images/',
+            options: {gzip: false}
+          },
+          {
+            src: 'dist/scripts/*',
+            dest: '/scripts/',
+            options: {gzip: false}
+          },
+          {
+            src: 'dist/views/*',
+            dest: '/views/',
+            options: {gzip: false}
+          },
+          {
+            src: 'dist/styles/*',
+            dest: '/styles/',
+            options: {gzip: false}
+          }
+
+        ]
+      }
+
     }
+
+
+
+
+
   });
 
 
@@ -375,4 +426,7 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
+  grunt.loadNpmTasks('grunt-s3');
+
 };

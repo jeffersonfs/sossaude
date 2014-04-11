@@ -6,6 +6,7 @@ app.controller('PostosCtrl', function ($scope, $geofire, $log, Posto, FIREBASE_U
     var geos = $geofire(ref);
 
 	$scope.postos = Posto.all;
+
  
 	$scope.posto = { 'cod_municipio': '', 'nome': '', 'endereco': '', 'bairro': '', 'cidade': '', 'telefone': ''};
 
@@ -36,9 +37,10 @@ app.controller('PostosCtrl', function ($scope, $geofire, $log, Posto, FIREBASE_U
 	  		var allText = texto;
             var lineArr = allText.split('\n'); 
             for (var i = 0; i < lineArr.length; i++) {
+            	if (lineArr[i] != null && lineArr[i] != ""){
 			    var atributos = lineArr[i].split(',');
 			    var j = 0;
-			    var posto = {
+			    $scope.posto = {
 			    	latitude : atributos[0],
 			    	longitude : atributos[1], 
 			    	codMunicipio: atributos[2], 
@@ -50,11 +52,11 @@ app.controller('PostosCtrl', function ($scope, $geofire, $log, Posto, FIREBASE_U
 			    };
 
 
-			    Posto.create(posto).then(function (postoId) {
+			    Posto.create($scope.posto).then(function (postoId) {
 			    	
-			    	/*var postoBD = Posto.find(postoId);
+			    	var postoBD = Posto.find(postoId);
 			    	//alert(postoBD.latitude);
-			    	var postoObjeto = { latitude : postoBD.latitude, 
+			    	/*var postoObjeto = { latitude : postoBD.latitude, 
 				    	longitude : postoBD.longitude, 
 				    	codMunicipio: postoBD.codMunicipio, 
 				    	nome: postoBD.nome, 
@@ -66,16 +68,21 @@ app.controller('PostosCtrl', function ($scope, $geofire, $log, Posto, FIREBASE_U
   					// Trivial example of inserting some data and querying data
     				//geos.$insertByLocWithId(, postoId, posto).catch(function(err) { $log.error(err); });
 
-    				geos.$insertByLocWithId([parseFloat(posto.latitude), 
-    				 parseFloat(posto.longitude)], postoId, angular.fromJson(angular.toJson(posto))).catch(function(err) { $log.error(err); });
+    				geos.$insertByLocWithId([parseFloat(postoBD.latitude), 
+    				 parseFloat(postoBD.longitude)], postoId, angular.fromJson(angular.toJson(postoBD))).catch(function(err) { $log.error(err); })
+    					.then(function() {
+    						var quantidade = parseInt($("#fileContents").text());
+    						quantidade++;
+    						$("#fileContents").html(quantidade);
+    					});
     // Query for data,
   				//geos.$insertByLocWithId([parseFloat(atributos[0] ,parseFloat(atributos[1]) ], postoId, posto);
             	//	catch(function(err) { $log.error(err); });
   				
 				});
 			}
-
-    	    document.getElementById("fileContents").innerHTML = evt.target.result;
+		}
+    	    //document.getElementById("fileContents").innerHTML = evt.target.result;
 	    }
 	    r.onerror = function (evt) {
 	        document.getElementById("fileContents").innerHTML = "error reading file";
