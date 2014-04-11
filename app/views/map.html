@@ -2,23 +2,20 @@
  	center="map.center" 
  	zoom="map.zoom"
  	control="map.control"
- 	dragging="false"
+ 	dragging="true"
  >
  <marker coords="{latitude: -7.52759814262368,longitude: -46.062304973601}"></marker>
 
- <markers
- 	models="markers" 
- 	coords="'self'"
- 	click="'onClicked'">
- </markers>
 
-<marker ng-repeat="m in markers" coords="m" click="onMarkerClicked(m)">
+<marker ng-repeat="m in markers" 
+        coords="m" >
 
-            <window>
+            <window ng-cloak  >
                     <p>{{m.nome}}</p>
-                    <p class="muted">{{m.telefone}}</p>
+                    <p class="muted">Telefone: {{m.telefone}}</p>
             </window>
 </marker>
+
 
 
 </google-map>
