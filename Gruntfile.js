@@ -328,7 +328,7 @@ module.exports = function (grunt) {
         key: "AKIAJE5LOPU4WCYYRCTQ",
         secret: "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",
         access: "public-read",
-        bucket: "sossaude",
+        bucket: "sos.4coding.com.br",
         region: "sa-east-1"
       },
       deploy: {

@@ -56,7 +56,7 @@ app.controller('MapCtrl', function ($scope, Map, $geofire, $log, FIREBASE_URL) {
         });
         
     }, function() {
-        alert("sem localizacao");
+        alert("Não foi possível obter sua localização");
       //handleNoGeolocation(true);
     });
     }
